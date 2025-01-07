@@ -1,5 +1,5 @@
 const karutaData = require('./karuta_data.json');
-// const readlineSync = require('readline-sync');
+const { default: inquirer } = require('inquirer');
 
 // ランダムに指定された数の和歌を選択する関数
 function selectRandomPoems(count) {
@@ -39,23 +39,50 @@ function createQuestion(poem) {
     };
 }
 
-// メイン関数
-function main() {
+// 選択肢を表示してユーザーの入力を受け付ける関数を非同期関数に変更
+async function displayChoicesAndGetAnswer(question, index) {
+    console.log(`\n問題 ${index + 1}:`);
+    console.log(`決まり字: ${question.kimariJi}\n`);
+    
+    // inquirerを使用して選択肢を表示
+    const answer = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'selected',
+            message: '下の句を選んでください:',
+            choices: question.choices.map((choice, i) => ({
+                name: `${i + 1}) ${choice}`,
+                value: choice
+            }))
+        }
+    ]);
+    
+    return answer.selected;
+}
+
+// メイン関数も非同期関数に変更
+async function main() {
     console.log('百人一首クイズへようこそ！');
     
-    // 3つの和歌を選択して問題を作成
     const selectedPoems = selectRandomPoems(3);
     const questions = selectedPoems.map(poem => createQuestion(poem));
     
-    // 動作確認用に問題を表示
-    questions.forEach((q, index) => {
-        console.log(`\n問題 ${index + 1}:`);
-        console.log(`決まり字: ${q.kimariJi}`);
-        console.log('選択肢:');
-        q.choices.forEach((choice, i) => {
-            console.log(`${i + 1}. ${choice}`);
-        });
-    });
+    // 各問題について選択肢を表示し、回答を受け付ける
+    for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        const userAnswer = await displayChoicesAndGetAnswer(question, i);
+        
+        // 正誤判定
+        const isCorrect = userAnswer === question.correctAnswer;
+        console.log(isCorrect ? '\n正解！' : '\n不正解...');
+        
+        // 和歌の全文と作者を表示
+        console.log('\n【和歌全文】');
+        console.log(question.fullPoem.kaminoKu);
+        console.log(question.fullPoem.shimonoKu);
+        console.log(`作者: ${question.fullPoem.poet}\n`);
+    }
 }
 
-main();
+// メイン関数の呼び出しを非同期に対応
+main().catch(console.error);
