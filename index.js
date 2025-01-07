@@ -1,5 +1,15 @@
-const karutaData = require('./karuta_data.json');
-const { default: inquirer } = require('inquirer');
+import inquirer from 'inquirer';
+import { readFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// 現在のファイルのディレクトリパスを取得
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// JSONファイルを読み込む
+const karutaData = JSON.parse(
+    await readFile(join(__dirname, './karuta_data.json'), 'utf8')
+);
 
 // ランダムに指定された数の和歌を選択する関数
 function selectRandomPoems(count) {
