@@ -1,40 +1,33 @@
 import inquirer from 'inquirer';
-import { readFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { shuffleArray } from '../utils/randomizer.js';
 
-// 現在のファイルのディレクトリパスを取得
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-class KarutaQuiz {
+export class KarutaQuiz {
     constructor(karutaData) {
         this.karutaData = karutaData;
     }
 
     // ランダムに和歌を選択
     selectRandomPoems(count) {
-        const shuffled = [...this.karutaData].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
+        return shuffleArray(this.karutaData).slice(0, count);
     }
 
     // 選択肢を生成
-    generateChoices(correctPoem) {
+    generateChoices(correctPoem, choiceCount = 3) {
         const choices = [correctPoem.shimono_ku];
         const otherPoems = this.karutaData.filter(poem => poem.id !== correctPoem.id);
-        const wrongChoices = otherPoems
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 2)
+        const wrongChoices = shuffleArray(otherPoems)
+            .slice(0, choiceCount - 1)
             .map(poem => poem.shimono_ku);
         
-        return [...choices, ...wrongChoices].sort(() => 0.5 - Math.random());
+        return shuffleArray([...choices, ...wrongChoices]);
     }
 
     // 問題を作成
-    createQuestion(poem) {
+    createQuestion(poem, choiceCount = 3) {
         return {
             kimariJi: poem.kimari_ji,
             correctAnswer: poem.shimono_ku,
-            choices: this.generateChoices(poem),
+            choices: this.generateChoices(poem, choiceCount),
             fullPoem: {
                 kaminoKu: poem.kamino_ku,
                 shimonoKu: poem.shimono_ku,
@@ -62,11 +55,13 @@ class KarutaQuiz {
     }
 
     // クイズを実行
-    async start(questionCount = 3) {
+    async start(questionCount = 3, choiceCount = 3) {
         console.log('百人一首クイズへようこそ！');
         
         const selectedPoems = this.selectRandomPoems(questionCount);
-        const questions = selectedPoems.map(poem => this.createQuestion(poem));
+        const questions = selectedPoems.map(poem => 
+            this.createQuestion(poem, choiceCount)
+        );
         
         for (let i = 0; i < questions.length; i++) {
             const question = questions[i];
@@ -81,16 +76,4 @@ class KarutaQuiz {
             console.log(`作者: ${question.fullPoem.poet}\n`);
         }
     }
-}
-
-// メイン処理
-async function main() {
-    const karutaData = JSON.parse(
-        await readFile(join(__dirname, './karuta_data.json'), 'utf8')
-    );
-    
-    const quiz = new KarutaQuiz(karutaData);
-    await quiz.start();
-}
-
-main().catch(console.error);
+} 
