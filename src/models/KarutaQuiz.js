@@ -12,12 +12,36 @@ export class KarutaQuiz {
     ID: "id",
   };
 
+  static RANGE_OPTIONS = {
+    ALL: { start: 1, end: 100, name: "全100首" },
+    FIRST_QUARTER: { start: 1, end: 25, name: "1-25首" },
+    SECOND_QUARTER: { start: 26, end: 50, name: "26-50首" },
+    THIRD_QUARTER: { start: 51, end: 75, name: "51-75首" },
+    FOURTH_QUARTER: { start: 76, end: 100, name: "76-100首" },
+  };
+
   constructor(karutaData) {
     this.karutaData = karutaData;
+    this.currentRange = KarutaQuiz.RANGE_OPTIONS.ALL; // デフォルトは全範囲
+  }
+
+  // 出題範囲を設定するメソッドを追加
+  setRange(range) {
+    this.currentRange = range;
+  }
+
+  // 出題範囲でフィルタリングするメソッドを追加
+  getFilteredKarutaData() {
+    return this.karutaData.filter(
+      (poem) =>
+        poem[KarutaQuiz.PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
+        poem[KarutaQuiz.PROPERTY_KEYS.NUMBER] <= this.currentRange.end
+    );
   }
 
   selectRandomPoems(count) {
-    return shuffleArray(this.karutaData).slice(0, count);
+    const filteredData = this.getFilteredKarutaData();
+    return shuffleArray(filteredData).slice(0, count);
   }
 
   generateChoices(correctPoem, choiceCount = 3) {
@@ -101,6 +125,22 @@ export class KarutaQuiz {
 
   async start(questionCount = 3, choiceCount = 3) {
     console.log("百人一首クイズへようこそ！");
+
+    // 出題範囲の選択を追加
+    const rangeSelection = await inquirer.prompt([
+      {
+        type: "list",
+        name: "range",
+        message: "出題範囲を選択してください:",
+        choices: Object.values(KarutaQuiz.RANGE_OPTIONS).map((range) => ({
+          name: range.name,
+          value: range,
+        })),
+      },
+    ]);
+
+    this.setRange(rangeSelection.range);
+    console.log(`\n${rangeSelection.range.name}から出題します。\n`);
 
     const questions = this.selectRandomPoems(questionCount).map((poem) =>
       this.createQuestion(poem, choiceCount)
