@@ -1,37 +1,802 @@
 [
-    {
-        "id": 0,
-        "kamino_ku": "秋の田の かりほの庵の 苫をあらみ",
-        "shimono_ku": "わが衣手は 露にぬれつつ",
-        "kimari_ji": "あきの",
-        "poet": "天智天皇"
-    },
-    {
-        "id": 1,
-        "kamino_ku": "春過ぎて 夏来にけらし 白妙の",
-        "shimono_ku": "衣ほすてふ 天の香具山",
-        "kimari_ji": "はるす",
-        "poet": "持統天皇"
-    },
-    {
-        "id": 2,
-        "kamino_ku": "あしびきの 山鳥の尾の しだり尾の",
-        "shimono_ku": "ながながし夜を ひとりかも寝む",
-        "kimari_ji": "あしび",
-        "poet": "柿本人麻呂"
-    },
-    {
-        "id": 3,
-        "kamino_ku": "田子の浦に うち出でてみれば 白妙の",
-        "shimono_ku": "富士の高嶺に 雪は降りつつ",
-        "kimari_ji": "たごの",
-        "poet": "山部赤人"
-    },
-    {
-        "id": 4,
-        "kamino_ku": "奥山に 紅葉踏み分け 鳴く鹿の",
-        "shimono_ku": "声聞く時ぞ 秋は悲しき",
-        "kimari_ji": "おくや",
-        "poet": "猿丸大夫"
-    }
+  {
+    "id": 0,
+    "number": "001",
+    "kamino-ku": "秋の田の かりほの庵の とまをあらみ",
+    "shimono-ku": "わが衣手は 露にぬれつつ",
+    "kimari-ji": "あきの",
+    "poet": "天智天皇"
+  },
+  {
+    "id": 1,
+    "number": "002",
+    "kamino-ku": "春過ぎて 夏来にけらし 白妙の",
+    "shimono-ku": "衣ほすてふ 天の香具山",
+    "kimari-ji": "はるす",
+    "poet": "持統天皇"
+  },
+  {
+    "id": 2,
+    "number": "003",
+    "kamino-ku": "足引きの 山鳥の尾の しだり尾の",
+    "shimono-ku": "ながながし夜を ひとりかもねむ",
+    "kimari-ji": "あし",
+    "poet": "柿本人麿"
+  },
+  {
+    "id": 3,
+    "number": "004",
+    "kamino-ku": "田子の浦に 打出でてみれば 白妙の",
+    "shimono-ku": "ふじの高嶺に 雪は降りつつ",
+    "kimari-ji": "たご",
+    "poet": "山部赤人"
+  },
+  {
+    "id": 4,
+    "number": "005",
+    "kamino-ku": "奥山に 紅葉ふみ分け なく鹿の",
+    "shimono-ku": "聲きく時ぞ 秋は悲しき",
+    "kimari-ji": "おく",
+    "poet": "猿丸太夫"
+  },
+  {
+    "id": 5,
+    "number": "006",
+    "kamino-ku": "かさゝぎの 渡せる橋に おく霜の",
+    "shimono-ku": "しろきを見れば 夜ぞふけにける",
+    "kimari-ji": "かさ",
+    "poet": "中納言家持"
+  },
+  {
+    "id": 6,
+    "number": "007",
+    "kamino-ku": "天の原 ふりさけ見れば 春日なる",
+    "shimono-ku": "みかさの山に 出でし月かも",
+    "kimari-ji": "あまの",
+    "poet": "阿倍仲麻呂"
+  },
+  {
+    "id": 7,
+    "number": "008",
+    "kamino-ku": "わが庵は 都のたつみ しかぞ住む",
+    "shimono-ku": "世をうぢ山と 人はいふなり",
+    "kimari-ji": "わがい",
+    "poet": "喜撰法師"
+  },
+  {
+    "id": 8,
+    "number": "009",
+    "kamino-ku": "花の色は 移りにけりな 徒に",
+    "shimono-ku": "我が身世にふる ながめせしまに",
+    "kimari-ji": "はなの",
+    "poet": "小野小町"
+  },
+  {
+    "id": 9,
+    "number": "010",
+    "kamino-ku": "これや此の 行くも帰るも 別かれては",
+    "shimono-ku": "知るも知らぬも 逢坂の関",
+    "kimari-ji": "これ",
+    "poet": "蝉丸"
+  },
+  {
+    "id": 10,
+    "number": "011",
+    "kamino-ku": "わたの原 八十島かけて 漕ぎ出でぬと",
+    "shimono-ku": "人にはつげよ あまの釣舟",
+    "kimari-ji": "わたのはら や",
+    "poet": "参議篁"
+  },
+  {
+    "id": 11,
+    "number": "012",
+    "kamino-ku": "天つ風 雲のかよひぢ 吹きとぢよ",
+    "shimono-ku": "をとめの姿 しばし留めむ",
+    "kimari-ji": "あまつ",
+    "poet": "僧正遍昭"
+  },
+  {
+    "id": 12,
+    "number": "013",
+    "kamino-ku": "筑波嶺の 峯より落つる みなの川",
+    "shimono-ku": "戀ぞつもりて 淵となりぬる",
+    "kimari-ji": "つく",
+    "poet": "陽成院"
+  },
+  {
+    "id": 13,
+    "number": "014",
+    "kamino-ku": "陸奥の しのぶもぢずり 誰故に",
+    "shimono-ku": "みだれ初めにし 我ならなくに",
+    "kimari-ji": "みち",
+    "poet": "河原左大臣"
+  },
+  {
+    "id": 14,
+    "number": "015",
+    "kamino-ku": "君がため 春の野に出でて 若菜つむ",
+    "shimono-ku": "わが衣手に 雪は降りつつ",
+    "kimari-ji": "きみがため は",
+    "poet": "光孝天皇"
+  },
+  {
+    "id": 15,
+    "number": "016",
+    "kamino-ku": "立別れ いなばの山の 嶺におふる",
+    "shimono-ku": "まつとし聞かば 今帰り来む",
+    "kimari-ji": "たち",
+    "poet": "中納言行平"
+  },
+  {
+    "id": 16,
+    "number": "017",
+    "kamino-ku": "ちはやぶる 神代も聞かず 龍田川",
+    "shimono-ku": "から紅に 水くくるとは",
+    "kimari-ji": "ちは",
+    "poet": "在原業平朝臣"
+  },
+  {
+    "id": 17,
+    "number": "018",
+    "kamino-ku": "住の江の 岸に寄る浪 よるさへや",
+    "shimono-ku": "夢の通ひ路 人目よくらむ",
+    "kimari-ji": "す",
+    "poet": "藤原敏行朝臣"
+  },
+  {
+    "id": 18,
+    "number": "019",
+    "kamino-ku": "難波潟 短き葦の ふしのまも",
+    "shimono-ku": "あはで此の世を すぐしてよとや",
+    "kimari-ji": "なにはが",
+    "poet": "伊勢"
+  },
+  {
+    "id": 19,
+    "number": "020",
+    "kamino-ku": "侘びぬれば 今はた同じ 難波なる",
+    "shimono-ku": "身をつくしても 逢はむとぞ思ふ",
+    "kimari-ji": "わび",
+    "poet": "元良親王"
+  },
+  {
+    "id": 20,
+    "number": "021",
+    "kamino-ku": "今来むと いひしばかりに 長月の",
+    "shimono-ku": "有明の月を 待ち出でつるかな",
+    "kimari-ji": "いまこ",
+    "poet": "素性法師"
+  },
+  {
+    "id": 21,
+    "number": "022",
+    "kamino-ku": "吹くからに 秋の草木の しをるれば",
+    "shimono-ku": "むべ山風を あらしといふらむ",
+    "kimari-ji": "ふ",
+    "poet": "文屋康秀"
+  },
+  {
+    "id": 22,
+    "number": "023",
+    "kamino-ku": "月見れば 千々に物こそ 悲しけれ",
+    "shimono-ku": "わが身ひとつの 秋にはあらねど",
+    "kimari-ji": "つき",
+    "poet": "大江千里"
+  },
+  {
+    "id": 23,
+    "number": "024",
+    "kamino-ku": "此の度は 幣もとりあへず 手向山",
+    "shimono-ku": "紅葉の錦 神のまにまに",
+    "kimari-ji": "この",
+    "poet": "菅家"
+  },
+  {
+    "id": 24,
+    "number": "025",
+    "kamino-ku": "名にしおはば 逢坂山の さねかづら",
+    "shimono-ku": "人にしられで くるよしもがな",
+    "kimari-ji": "なにし",
+    "poet": "三条右大臣"
+  },
+  {
+    "id": 25,
+    "number": "026",
+    "kamino-ku": "小倉山 峯のもみぢ葉 心あらば",
+    "shimono-ku": "今ひとたびの みゆき待たなむ",
+    "kimari-ji": "をぐ",
+    "poet": "貞信公"
+  },
+  {
+    "id": 26,
+    "number": "027",
+    "kamino-ku": "みかの原 わきて流るる 泉川",
+    "shimono-ku": "いつみきとてか 戀しかるらむ",
+    "kimari-ji": "みかの",
+    "poet": "中納言兼輔"
+  },
+  {
+    "id": 27,
+    "number": "028",
+    "kamino-ku": "山里は 冬ぞ寂しさ まさりける",
+    "shimono-ku": "人目も草も かれぬと思へば",
+    "kimari-ji": "やまざ",
+    "poet": "源宗行朝臣"
+  },
+  {
+    "id": 28,
+    "number": "029",
+    "kamino-ku": "心あてに 折らばや折らむ 初霜の",
+    "shimono-ku": "置きまどはせる 白菊の花",
+    "kimari-ji": "こゝろあ",
+    "poet": "凡河内躬恒"
+  },
+  {
+    "id": 29,
+    "number": "030",
+    "kamino-ku": "有明の つれなく見えし 別れより",
+    "shimono-ku": "暁ばかり 憂きものはなし",
+    "kimari-ji": "ありあ",
+    "poet": "壬生忠岑"
+  },
+  {
+    "id": 30,
+    "number": "031",
+    "kamino-ku": "朝ぼらけ 有明の月と 見るまでに",
+    "shimono-ku": "吉野の里に 降れる白雪",
+    "kimari-ji": "あさぼらけ あ",
+    "poet": "坂上是則"
+  },
+  {
+    "id": 31,
+    "number": "032",
+    "kamino-ku": "山がはに 風のかけたる しがらみは",
+    "shimono-ku": "流れもあへぬ 紅葉なりけり",
+    "kimari-ji": "やまが",
+    "poet": "春道列樹"
+  },
+  {
+    "id": 32,
+    "number": "033",
+    "kamino-ku": "久方の 光のどけき 春の日に",
+    "shimono-ku": "しづごころなく 花の散るらむ",
+    "kimari-ji": "ひさ",
+    "poet": "紀友則"
+  },
+  {
+    "id": 33,
+    "number": "034",
+    "kamino-ku": "誰をかも 知る人にせむ 高砂の",
+    "shimono-ku": "松も昔の 友ならなくに",
+    "kimari-ji": "たれ",
+    "poet": "藤原興風"
+  },
+  {
+    "id": 34,
+    "number": "035",
+    "kamino-ku": "人はいさ 心もしらず ふるさとは",
+    "shimono-ku": "花ぞ昔の 香ににほひける",
+    "kimari-ji": "ひとは",
+    "poet": "紀貫之"
+  },
+  {
+    "id": 35,
+    "number": "036",
+    "kamino-ku": "夏の夜は まだ宵ながら あけぬるを",
+    "shimono-ku": "雲のいづこに 月宿るらむ",
+    "kimari-ji": "なつ",
+    "poet": "清原深養父"
+  },
+  {
+    "id": 36,
+    "number": "037",
+    "kamino-ku": "白露に 風の吹きしく 秋の野は",
+    "shimono-ku": "つらぬきとめぬ 玉ぞ散りける",
+    "kimari-ji": "しら",
+    "poet": "文屋朝康"
+  },
+  {
+    "id": 37,
+    "number": "038",
+    "kamino-ku": "忘らるる 身をば思はず 誓ひてし",
+    "shimono-ku": "人の命の 惜しくもあるかな",
+    "kimari-ji": "わすら",
+    "poet": "右近"
+  },
+  {
+    "id": 38,
+    "number": "039",
+    "kamino-ku": "浅茅生の 小野の篠原 しのぶれど",
+    "shimono-ku": "あまりてなどか 人の戀しき",
+    "kimari-ji": "あさぢ",
+    "poet": "参議等"
+  },
+  {
+    "id": 39,
+    "number": "040",
+    "kamino-ku": "忍ぶれど 色に出にけり 我が戀は",
+    "shimono-ku": "ものや思ふと 人の問ふまで",
+    "kimari-ji": "しの",
+    "poet": "平兼盛"
+  },
+  {
+    "id": 40,
+    "number": "041",
+    "kamino-ku": "戀すてふ わが名はまだき 立ちにけり",
+    "shimono-ku": "人知れずこそ 思ひそめしか",
+    "kimari-ji": "こひ",
+    "poet": "壬生忠見"
+  },
+  {
+    "id": 41,
+    "number": "042",
+    "kamino-ku": "契りきな かたみに袖を しぼりつつ",
+    "shimono-ku": "末の松山 浪こさじとは",
+    "kimari-ji": "ちぎりき",
+    "poet": "清原元輔"
+  },
+  {
+    "id": 42,
+    "number": "043",
+    "kamino-ku": "逢ひみての 後の心に くらぶれば",
+    "shimono-ku": "昔はものを 思はざりけり",
+    "kimari-ji": "あひ",
+    "poet": "権中納言敦忠"
+  },
+  {
+    "id": 43,
+    "number": "044",
+    "kamino-ku": "逢ふことの 絶えてしなくば なかなかに",
+    "shimono-ku": "人をも身をも 恨みざらまし",
+    "kimari-ji": "あふ",
+    "poet": "中納言朝忠"
+  },
+  {
+    "id": 44,
+    "number": "045",
+    "kamino-ku": "哀れとも いふべき人は おもほえで",
+    "shimono-ku": "身のいたづらに なりぬべきかな",
+    "kimari-ji": "あはれ",
+    "poet": "謙徳公"
+  },
+  {
+    "id": 45,
+    "number": "046",
+    "kamino-ku": "由良の戸を わたる舟人 楫をたえ",
+    "shimono-ku": "行方もしらぬ 戀の道かな",
+    "kimari-ji": "ゆら",
+    "poet": "曾禰好忠"
+  },
+  {
+    "id": 46,
+    "number": "047",
+    "kamino-ku": "八重葎 しげれる宿の さびしきに",
+    "shimono-ku": "人こそ見えね 秋はきにけり",
+    "kimari-ji": "やへ",
+    "poet": "恵慶法師"
+  },
+  {
+    "id": 47,
+    "number": "048",
+    "kamino-ku": "風をいたみ 岩うつ浪の おのれのみ",
+    "shimono-ku": "砕けてものを 思ふ頃かな",
+    "kimari-ji": "かぜを",
+    "poet": "源重之"
+  },
+  {
+    "id": 48,
+    "number": "049",
+    "kamino-ku": "御垣守 衛士のたく火の 夜はもえ",
+    "shimono-ku": "晝は消えつつ ものをこそ思へ",
+    "kimari-ji": "みかき",
+    "poet": "大中臣能宣朝臣"
+  },
+  {
+    "id": 49,
+    "number": "050",
+    "kamino-ku": "君がため 惜しからざりし 命さへ",
+    "shimono-ku": "長くもがなと 思ひけるかな",
+    "kimari-ji": "きみがため を",
+    "poet": "藤原義孝"
+  },
+  {
+    "id": 50,
+    "number": "051",
+    "kamino-ku": "かくとだに えやはいぶきの さしも草",
+    "shimono-ku": "さしも知らじな もゆる思ひを",
+    "kimari-ji": "かく",
+    "poet": "藤原実方朝臣"
+  },
+  {
+    "id": 51,
+    "number": "052",
+    "kamino-ku": "明けぬれば くるるものとは 知りながら",
+    "shimono-ku": "なほ恨めしき 朝ぼらけかな",
+    "kimari-ji": "あけ",
+    "poet": "藤原道信朝臣"
+  },
+  {
+    "id": 52,
+    "number": "053",
+    "kamino-ku": "嘆きつつ 獨りぬる夜の 明くるまは",
+    "shimono-ku": "いかに久しき ものとかは知る",
+    "kimari-ji": "なげき",
+    "poet": "右大将道綱母"
+  },
+  {
+    "id": 53,
+    "number": "054",
+    "kamino-ku": "忘れじの 行末までは 難ければ",
+    "shimono-ku": "今日を限りの 命ともがな",
+    "kimari-ji": "わすれ",
+    "poet": "儀同三司母"
+  },
+  {
+    "id": 54,
+    "number": "055",
+    "kamino-ku": "瀧の音は たえて久しく なりぬれど",
+    "shimono-ku": "名こそ流れて なほ聞えけれ",
+    "kimari-ji": "たき",
+    "poet": "大納言公任"
+  },
+  {
+    "id": 55,
+    "number": "056",
+    "kamino-ku": "あらざらむ 此の世のほかの 思ひ出に",
+    "shimono-ku": "今一たびの 逢ふこともがな",
+    "kimari-ji": "あらざ",
+    "poet": "和泉式部"
+  },
+  {
+    "id": 56,
+    "number": "057",
+    "kamino-ku": "廻り逢ひて 見しやそれとも わかぬまに",
+    "shimono-ku": "雲がくれにし 夜半の月かな",
+    "kimari-ji": "め",
+    "poet": "紫式部"
+  },
+  {
+    "id": 57,
+    "number": "058",
+    "kamino-ku": "有馬山 ゐなのささ原 風吹けば",
+    "shimono-ku": "いでそよ人を 忘れやはする",
+    "kimari-ji": "ありま",
+    "poet": "大貮三位"
+  },
+  {
+    "id": 58,
+    "number": "059",
+    "kamino-ku": "やすらはで 寝なましものを 小夜更けて",
+    "shimono-ku": "傾くまでの 月を見しかな",
+    "kimari-ji": "やす",
+    "poet": "赤染衛門"
+  },
+  {
+    "id": 59,
+    "number": "060",
+    "kamino-ku": "大江山 いくのの道の 遠ければ",
+    "shimono-ku": "まだふみも見ず 天の橋立",
+    "kimari-ji": "おほえ",
+    "poet": "小式部内侍"
+  },
+  {
+    "id": 60,
+    "number": "061",
+    "kamino-ku": "古への 奈良の都の 八重ざくら",
+    "shimono-ku": "今日九重に 匂ひぬるかな",
+    "kimari-ji": "いに",
+    "poet": "伊勢大輔"
+  },
+  {
+    "id": 61,
+    "number": "062",
+    "kamino-ku": "夜をこめて 鳥のそら音は はかるとも",
+    "shimono-ku": "世に逢坂の 関はゆるさじ",
+    "kimari-ji": "よを",
+    "poet": "清少納言"
+  },
+  {
+    "id": 62,
+    "number": "063",
+    "kamino-ku": "今はただ 思ひ絶えなむ とばかりを",
+    "shimono-ku": "人づてならで 言ふよしもがな",
+    "kimari-ji": "いまは",
+    "poet": "左京大夫道雅"
+  },
+  {
+    "id": 63,
+    "number": "064",
+    "kamino-ku": "朝ぼらけ 宇治の川霧 絶えだえに",
+    "shimono-ku": "あらはれ渡る 瀬々の網代木",
+    "kimari-ji": "あさぼらけ う",
+    "poet": "権中納言定頼"
+  },
+  {
+    "id": 64,
+    "number": "065",
+    "kamino-ku": "恨み侘び ほさぬ袖だに あるものを",
+    "shimono-ku": "戀に朽ちなむ 名こそ惜しけれ",
+    "kimari-ji": "うら",
+    "poet": "相模"
+  },
+  {
+    "id": 65,
+    "number": "066",
+    "kamino-ku": "諸共に あはれと思へ 山ざくら",
+    "shimono-ku": "花よりほかに 知る人もなし",
+    "kimari-ji": "もろ",
+    "poet": "大僧正行尊"
+  },
+  {
+    "id": 66,
+    "number": "067",
+    "kamino-ku": "春の夜の 夢ばかりなる 手枕に",
+    "shimono-ku": "かひなく立たむ 名こそ惜しけれ",
+    "kimari-ji": "はるの",
+    "poet": "周防内侍"
+  },
+  {
+    "id": 67,
+    "number": "068",
+    "kamino-ku": "心にも あらで憂世に ながらへば",
+    "shimono-ku": "戀しかるべき 夜半の月かな",
+    "kimari-ji": "こゝろに",
+    "poet": "三条院"
+  },
+  {
+    "id": 68,
+    "number": "069",
+    "kamino-ku": "嵐ふく 三室の山の もみぢ葉は",
+    "shimono-ku": "龍田の川の 錦なりけり",
+    "kimari-ji": "あらし",
+    "poet": "能因法師"
+  },
+  {
+    "id": 69,
+    "number": "070",
+    "kamino-ku": "寂しさに 宿を立ち出でて 眺むれば",
+    "shimono-ku": "いづくも同じ 秋の夕暮",
+    "kimari-ji": "さ",
+    "poet": "良暹法師"
+  },
+  {
+    "id": 70,
+    "number": "071",
+    "kamino-ku": "夕されば 門田の稲葉 おとづれて",
+    "shimono-ku": "あしのまろやに 秋風ぞ吹く",
+    "kimari-ji": "ゆふ",
+    "poet": "大納言経信"
+  },
+  {
+    "id": 71,
+    "number": "072",
+    "kamino-ku": "音に聞く 高師の濱の あだ浪は",
+    "shimono-ku": "かけじや袖の ぬれもこそすれ",
+    "kimari-ji": "おと",
+    "poet": "祐子内親王家紀伊"
+  },
+  {
+    "id": 72,
+    "number": "073",
+    "kamino-ku": "高砂の 尾の上の桜 咲きにけり",
+    "shimono-ku": "外山の霞 立たずもあらなむ",
+    "kimari-ji": "たか",
+    "poet": "権中納言匡房"
+  },
+  {
+    "id": 73,
+    "number": "074",
+    "kamino-ku": "うかりける 人を初瀬の 山おろし",
+    "shimono-ku": "はげしかれとは 祈らぬものを",
+    "kimari-ji": "うか",
+    "poet": "源俊頼朝臣"
+  },
+  {
+    "id": 74,
+    "number": "075",
+    "kamino-ku": "契りおきし させもが露を 命にて",
+    "shimono-ku": "あはれ今年の 秋も去ぬめり",
+    "kimari-ji": "ちぎりお",
+    "poet": "藤原基俊"
+  },
+  {
+    "id": 75,
+    "number": "076",
+    "kamino-ku": "わたの原 漕ぎ出でて見れば 久方の",
+    "shimono-ku": "雲居にまがふ 沖つ白浪",
+    "kimari-ji": "わたのはら こ",
+    "poet": "法性寺入道前関白太政大臣"
+  },
+  {
+    "id": 76,
+    "number": "077",
+    "kamino-ku": "瀬を早み 岩にせかるる 瀧川の",
+    "shimono-ku": "われても末に 逢はむとぞ思ふ",
+    "kimari-ji": "せ",
+    "poet": "崇徳院"
+  },
+  {
+    "id": 77,
+    "number": "078",
+    "kamino-ku": "淡路島 かよふ千鳥の 鳴く声に",
+    "shimono-ku": "いくよ寝覚めぬ 須磨の関守",
+    "kimari-ji": "あはぢ",
+    "poet": "源兼昌"
+  },
+  {
+    "id": 78,
+    "number": "079",
+    "kamino-ku": "秋風に たなびく雲の 絶間より",
+    "shimono-ku": "もれ出づる月の 影のさやけさ",
+    "kimari-ji": "あきか",
+    "poet": "左京大夫顕輔"
+  },
+  {
+    "id": 79,
+    "number": "080",
+    "kamino-ku": "ながからむ 心も知らず 黒髪の",
+    "shimono-ku": "みだれて今朝は ものをこそ思へ",
+    "kimari-ji": "ながか",
+    "poet": "待賢門院堀河"
+  },
+  {
+    "id": 80,
+    "number": "081",
+    "kamino-ku": "ほととぎす 鳴きつる方を 眺むれば",
+    "shimono-ku": "ただ有明の 月ぞ残れる",
+    "kimari-ji": "ほ",
+    "poet": "後徳大寺左大臣"
+  },
+  {
+    "id": 81,
+    "number": "082",
+    "kamino-ku": "思ひわび さても命は あるものを",
+    "shimono-ku": "憂きに堪へぬは 涙なりけり",
+    "kimari-ji": "おも",
+    "poet": "道因法師"
+  },
+  {
+    "id": 82,
+    "number": "083",
+    "kamino-ku": "世の中よ 道こそなけれ 思ひ入る",
+    "shimono-ku": "山の奥にも 鹿ぞなくなる",
+    "kimari-ji": "よのなかよ",
+    "poet": "皇太后宮大夫俊成"
+  },
+  {
+    "id": 83,
+    "number": "084",
+    "kamino-ku": "ながらへば また此の頃や しのばれむ",
+    "shimono-ku": "憂しと見し世ぞ 今は戀しき",
+    "kimari-ji": "ながら",
+    "poet": "藤原清輔朝臣"
+  },
+  {
+    "id": 84,
+    "number": "085",
+    "kamino-ku": "夜もすがら もの思ふ頃は 明けやらで",
+    "shimono-ku": "ねやのひまさへ つれなかりけり",
+    "kimari-ji": "よも",
+    "poet": "俊恵法師"
+  },
+  {
+    "id": 85,
+    "number": "086",
+    "kamino-ku": "嘆けとて 月やはものを 思はする",
+    "shimono-ku": "かこち顔なる わが涙かな",
+    "kimari-ji": "なげけ",
+    "poet": "西行法師"
+  },
+  {
+    "id": 86,
+    "number": "087",
+    "kamino-ku": "村雨の 露もまだひぬ 槙の葉に",
+    "shimono-ku": "霧立ちのぼる 秋の夕暮",
+    "kimari-ji": "む",
+    "poet": "寂蓮法師"
+  },
+  {
+    "id": 87,
+    "number": "088",
+    "kamino-ku": "難波江の あしのかりねの 一夜ゆゑ",
+    "shimono-ku": "みをつくしてや 戀ひわたるべき",
+    "kimari-ji": "なにはえ",
+    "poet": "皇嘉門院別当"
+  },
+  {
+    "id": 88,
+    "number": "089",
+    "kamino-ku": "玉の緒よ たえなば絶えね ながらへば",
+    "shimono-ku": "忍ぶることの 弱りもぞする",
+    "kimari-ji": "たま",
+    "poet": "式子内親王"
+  },
+  {
+    "id": 89,
+    "number": "090",
+    "kamino-ku": "見せばやな 雄島のあまの 袖だにも",
+    "shimono-ku": "濡れにぞ濡れし 色はかはらず",
+    "kimari-ji": "みせ",
+    "poet": "殷富門院大輔"
+  },
+  {
+    "id": 90,
+    "number": "091",
+    "kamino-ku": "きりぎりす なくや霜夜の さむしろに",
+    "shimono-ku": "衣かたしき 獨りかも寝む",
+    "kimari-ji": "きり",
+    "poet": "後京極摂政前太政大臣"
+  },
+  {
+    "id": 91,
+    "number": "092",
+    "kamino-ku": "わが袖は 汐干に見えぬ 沖の石の",
+    "shimono-ku": "人こそ知らね 乾く間もなし",
+    "kimari-ji": "わがそ",
+    "poet": "二条院讃岐"
+  },
+  {
+    "id": 92,
+    "number": "093",
+    "kamino-ku": "世の中は 常にもがもな 渚こぐ",
+    "shimono-ku": "海士の小舟の 綱手かなしも",
+    "kimari-ji": "よのなかは",
+    "poet": "鎌倉右大臣"
+  },
+  {
+    "id": 93,
+    "number": "094",
+    "kamino-ku": "みよし野の 山の秋風 小夜更けて",
+    "shimono-ku": "故郷寒く 衣うつなり",
+    "kimari-ji": "みよ",
+    "poet": "参議雅経"
+  },
+  {
+    "id": 94,
+    "number": "095",
+    "kamino-ku": "おほけなく うき世の民に おほふかな",
+    "shimono-ku": "我が立つ杣に 墨染の袖",
+    "kimari-ji": "おほけ",
+    "poet": "前大僧正慈圓"
+  },
+  {
+    "id": 95,
+    "number": "096",
+    "kamino-ku": "花さそふ あらしの庭の 雪ならで",
+    "shimono-ku": "ふりゆくものは 我が身なりけり",
+    "kimari-ji": "はなさ",
+    "poet": "入道前太政大臣"
+  },
+  {
+    "id": 96,
+    "number": "097",
+    "kamino-ku": "来ぬ人を 松帆の浦の 夕なぎに",
+    "shimono-ku": "焼くや藻塩の 身もこがれつつ",
+    "kimari-ji": "こぬ",
+    "poet": "権中納言定家"
+  },
+  {
+    "id": 97,
+    "number": "098",
+    "kamino-ku": "風そよぐ 楢の小川の 夕ぐれは",
+    "shimono-ku": "みそぎぞ夏の しるしなりける",
+    "kimari-ji": "かぜそ",
+    "poet": "従二位家隆"
+  },
+  {
+    "id": 98,
+    "number": "099",
+    "kamino-ku": "人もをし 人もうらめし あぢきなく",
+    "shimono-ku": "世を思ふ故に もの思ふ身は",
+    "kimari-ji": "ひとも",
+    "poet": "後鳥羽院"
+  },
+  {
+    "id": 99,
+    "number": "100",
+    "kamino-ku": "百敷や 古き軒端の しのぶにも",
+    "shimono-ku": "なほあまりある 昔なりけり",
+    "kimari-ji": "もも",
+    "poet": "順徳院"
+  }
 ]
