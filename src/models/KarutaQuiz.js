@@ -1,41 +1,24 @@
 import inquirer from "inquirer";
 import { shuffleArray } from "../utils/randomizer.js";
+import { PROPERTY_KEYS, RANGE_OPTIONS } from "../constants/karutaConstants.js";
 
 export class KarutaQuiz {
-  // 定数をクラス内で定義
-  static PROPERTY_KEYS = {
-    KIMARI_JI: "kimari-ji",
-    KAMINO_KU: "kamino-ku",
-    SHIMONO_KU: "shimono-ku",
-    NUMBER: "number",
-    POET: "poet",
-    ID: "id",
-  };
-
-  static RANGE_OPTIONS = {
-    ALL: { start: 1, end: 100, name: "全100首" },
-    FIRST_QUARTER: { start: 1, end: 25, name: "1-25首" },
-    SECOND_QUARTER: { start: 26, end: 50, name: "26-50首" },
-    THIRD_QUARTER: { start: 51, end: 75, name: "51-75首" },
-    FOURTH_QUARTER: { start: 76, end: 100, name: "76-100首" },
-  };
-
   constructor(karutaData) {
     this.karutaData = karutaData;
-    this.currentRange = KarutaQuiz.RANGE_OPTIONS.ALL; // デフォルトは全範囲
+    this.currentRange = RANGE_OPTIONS.ALL; // デフォルトは全範囲
   }
 
-  // 出題範囲を設定するメソッドを追加
+  // 出題範囲を設定するメソッド
   setRange(range) {
     this.currentRange = range;
   }
 
-  // 出題範囲でフィルタリングするメソッドを追加
+  // 出題範囲でフィルタリングするメソッド
   getFilteredKarutaData() {
     return this.karutaData.filter(
       (poem) =>
-        poem[KarutaQuiz.PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
-        poem[KarutaQuiz.PROPERTY_KEYS.NUMBER] <= this.currentRange.end
+        poem[PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
+        poem[PROPERTY_KEYS.NUMBER] <= this.currentRange.end
     );
   }
 
@@ -45,7 +28,7 @@ export class KarutaQuiz {
   }
 
   generateChoices(correctPoem, choiceCount = 3) {
-    const { SHIMONO_KU, ID } = KarutaQuiz.PROPERTY_KEYS;
+    const { SHIMONO_KU, ID } = PROPERTY_KEYS;
     const choices = [correctPoem[SHIMONO_KU]];
 
     const otherPoems = this.karutaData.filter(
@@ -59,7 +42,7 @@ export class KarutaQuiz {
   }
 
   createQuestion(poem, choiceCount = 3) {
-    const { KIMARI_JI, SHIMONO_KU } = KarutaQuiz.PROPERTY_KEYS;
+    const { KIMARI_JI, SHIMONO_KU } = PROPERTY_KEYS;
     return {
       kimariJi: poem[KIMARI_JI],
       correctAnswer: poem[SHIMONO_KU],
@@ -70,7 +53,7 @@ export class KarutaQuiz {
 
   // 問題表示用のフォーマット関数を追加
   formatPoemDisplay(poem) {
-    const { NUMBER, KAMINO_KU, SHIMONO_KU, POET } = KarutaQuiz.PROPERTY_KEYS;
+    const { NUMBER, KAMINO_KU, SHIMONO_KU, POET } = PROPERTY_KEYS;
     return [
       "----------------------------------------",
       "\n【和歌全文】",
@@ -91,7 +74,7 @@ export class KarutaQuiz {
     while (true) {
       if (isHintVisible) {
         console.log(
-          `\nヒント: ${question.fullPoem[KarutaQuiz.PROPERTY_KEYS.KAMINO_KU]}\n`
+          `\nヒント: ${question.fullPoem[PROPERTY_KEYS.KAMINO_KU]}\n`
         );
       }
 
@@ -132,7 +115,7 @@ export class KarutaQuiz {
         type: "list",
         name: "range",
         message: "出題範囲を選択してください:",
-        choices: Object.values(KarutaQuiz.RANGE_OPTIONS).map((range) => ({
+        choices: Object.values(RANGE_OPTIONS).map((range) => ({
           name: range.name,
           value: range,
         })),
