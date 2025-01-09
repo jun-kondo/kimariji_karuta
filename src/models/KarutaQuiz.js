@@ -62,19 +62,41 @@ export class KarutaQuiz {
     console.log(`\n問題 ${index + 1}:`);
     console.log(`決まり字: ${question.kimariJi}\n`);
 
-    const answer = await inquirer.prompt([
-      {
-        type: "list",
-        name: "selected",
-        message: "下の句を選んでください:",
-        choices: question.choices.map((choice, i) => ({
-          name: `${i + 1}) ${choice}`,
-          value: choice,
-        })),
-      },
-    ]);
+    let isHintVisible = false;
 
-    return answer.selected;
+    while (true) {
+      if (isHintVisible) {
+        console.log(
+          `\nヒント: ${question.fullPoem[KarutaQuiz.PROPERTY_KEYS.KAMINO_KU]}\n`
+        );
+      }
+
+      const answer = await inquirer.prompt([
+        {
+          type: "list",
+          name: "selected",
+          message: "下の句を選んでください:",
+          choices: [
+            ...question.choices.map((choice, i) => ({
+              name: `${i + 1}) ${choice}`,
+              value: choice,
+            })),
+            new inquirer.Separator(),
+            {
+              name: isHintVisible ? "上の句を隠す" : "上の句を表示する",
+              value: "HINT",
+            },
+          ],
+        },
+      ]);
+
+      if (answer.selected === "HINT") {
+        isHintVisible = !isHintVisible; // ヒントの表示状態を切り替え
+        continue;
+      }
+
+      return answer.selected;
+    }
   }
 
   async start(questionCount = 3, choiceCount = 3) {
