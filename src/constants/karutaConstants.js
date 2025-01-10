@@ -1,8 +1,8 @@
 // カルタに関する定数を管理するファイル
 export const PROPERTY_KEYS = {
-  KIMARI_JI: "kimari-ji",
-  KAMINO_KU: "kamino-ku",
-  SHIMONO_KU: "shimono-ku",
+  KIMARI_JI: "kimariJi",
+  KAMINO_KU: "kaminoKu",
+  SHIMONO_KU: "shimonoKu",
   NUMBER: "number",
   POET: "poet",
   ID: "id",
