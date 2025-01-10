@@ -131,10 +131,22 @@ export class KarutaQuiz {
   }
 
   async start(questionCount = 3, choiceCount = 3) {
+    // 初期メッセージの表示
     console.log("百人一首クイズへようこそ！");
 
-    // 出題範囲の選択を追加
-    const rangeSelection = await inquirer.prompt([
+    // 出題範囲の選択
+    const rangeSelection = await this.selectQuizRange();
+    this.setRange(rangeSelection.range);
+    console.log(`\n${rangeSelection.range.name}から出題します。\n`);
+
+    // 問題の生成と出題
+    const questions = this.generateQuestions(questionCount, choiceCount);
+    await this.conductQuiz(questions);
+  }
+
+  // 出題範囲選択用のメソッド
+  async selectQuizRange() {
+    return await inquirer.prompt([
       {
         type: "list",
         name: "range",
@@ -145,21 +157,32 @@ export class KarutaQuiz {
         })),
       },
     ]);
+  }
 
-    this.setRange(rangeSelection.range);
-    console.log(`\n${rangeSelection.range.name}から出題します。\n`);
-
-    const questions = this.selectRandomPoems(questionCount).map((poem) =>
+  // 問題セットの生成
+  generateQuestions(questionCount, choiceCount) {
+    return this.selectRandomPoems(questionCount).map((poem) =>
       this.createQuestion(poem, choiceCount)
     );
+  }
 
+  // クイズの実施
+  async conductQuiz(questions) {
     for (let i = 0; i < questions.length; i++) {
       const question = questions[i];
-      const userAnswer = await this.displayChoicesAndGetAnswer(question, i);
-      const isCorrect = userAnswer === question.correctAnswer;
 
-      console.log(isCorrect ? "\n正解！" : "\n不正解...");
-      console.log(this.formatPoemDisplay(question.fullPoem));
+      // ユーザーからの回答を取得
+      const userAnswer = await this.displayChoicesAndGetAnswer(question, i);
+
+      // 正誤判定と結果表示
+      const isCorrect = userAnswer === question.correctAnswer;
+      this.displayQuizResult(isCorrect, question);
     }
+  }
+
+  // クイズ結果の表示
+  displayQuizResult(isCorrect, question) {
+    console.log(isCorrect ? "\n正解！" : "\n不正解...");
+    console.log(this.formatPoemDisplay(question.fullPoem));
   }
 }
