@@ -66,43 +66,67 @@ export class KarutaQuiz {
   }
 
   async displayChoicesAndGetAnswer(question, index) {
+    this.displayQuestionHeader(index, question);
+    return await this.handleAnswerSelection(question);
+  }
+
+  // 問題のヘッダー表示を担当
+  displayQuestionHeader(index, question) {
     console.log(`\n問題 ${index + 1}:`);
     console.log(`決まり字: ${question.kimariJi}\n`);
+  }
 
+  // ヒントの表示を担当
+  displayHint(question) {
+    console.log(`\nヒント: ${question.fullPoem[PROPERTY_KEYS.KAMINO_KU]}\n`);
+  }
+
+  // 選択肢の生成を担当
+  createChoicesList(question, isHintVisible) {
+    return [
+      ...question.choices.map((choice, i) => ({
+        name: `${i + 1}) ${choice}`,
+        value: choice,
+      })),
+      new inquirer.Separator(),
+      {
+        name: isHintVisible ? "上の句を隠す" : "上の句を表示する",
+        value: "HINT",
+      },
+    ];
+  }
+
+  // ユーザーの回答取得を担当
+  async promptForAnswer(choices) {
+    const { selected } = await inquirer.prompt([
+      {
+        type: "list",
+        name: "selected",
+        message: "下の句を選んでください:",
+        choices,
+      },
+    ]);
+    return selected;
+  }
+
+  // 回答選択の処理を担当
+  async handleAnswerSelection(question) {
     let isHintVisible = false;
 
     while (true) {
       if (isHintVisible) {
-        console.log(
-          `\nヒント: ${question.fullPoem[PROPERTY_KEYS.KAMINO_KU]}\n`
-        );
+        this.displayHint(question);
       }
 
-      const answer = await inquirer.prompt([
-        {
-          type: "list",
-          name: "selected",
-          message: "下の句を選んでください:",
-          choices: [
-            ...question.choices.map((choice, i) => ({
-              name: `${i + 1}) ${choice}`,
-              value: choice,
-            })),
-            new inquirer.Separator(),
-            {
-              name: isHintVisible ? "上の句を隠す" : "上の句を表示する",
-              value: "HINT",
-            },
-          ],
-        },
-      ]);
+      const choices = this.createChoicesList(question, isHintVisible);
+      const answer = await this.promptForAnswer(choices);
 
-      if (answer.selected === "HINT") {
-        isHintVisible = !isHintVisible; // ヒントの表示状態を切り替え
+      if (answer === "HINT") {
+        isHintVisible = !isHintVisible;
         continue;
       }
 
-      return answer.selected;
+      return answer;
     }
   }
 
