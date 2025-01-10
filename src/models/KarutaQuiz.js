@@ -54,12 +54,20 @@ export class KarutaQuiz {
   }
 
   createQuestion(poem, choiceCount = 3) {
-    const { KIMARI_JI, SHIMONO_KU } = PROPERTY_KEYS;
+    const { KIMARI_JI, NUMBER, KAMINO_KU, SHIMONO_KU, POET } = PROPERTY_KEYS;
+
+    const fullPoem = {
+      number: poem[NUMBER],
+      kaminoKu: poem[KAMINO_KU],
+      shimonoKu: poem[SHIMONO_KU],
+      poet: poem[POET],
+    };
+
     return {
       kimariJi: poem[KIMARI_JI],
       correctAnswer: poem[SHIMONO_KU],
       choices: this.generateChoices(poem, choiceCount),
-      fullPoem: poem,
+      fullPoem,
     };
   }
 
