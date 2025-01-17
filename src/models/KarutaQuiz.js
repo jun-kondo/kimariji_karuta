@@ -55,42 +55,50 @@ export class KarutaQuiz {
 
   async displayIndex() {
     while (true) {
-      const { selectedGyo } = await inquirer.prompt([
-        {
-          type: "list",
-          name: "selectedGyo",
-          message: "行を選んでください:",
-          choices: [...GYO_OPTIONS, new inquirer.Separator(), "戻る"],
-        },
-      ]);
+      const selectedGyo = await this.selectGyo();
 
       if (selectedGyo === "戻る") {
         return;
       }
 
-      const filteredPoems = this.filterPoemsByGyo(selectedGyo);
-      const { selectedKimariJi } = await inquirer.prompt([
-        {
-          type: "list",
-          name: "selectedKimariJi",
-          message: `${selectedGyo} の決まり字を選んでください:`,
-          choices: [
-            ...filteredPoems.map((poem) => ({
-              name: poem[PROPERTY_KEYS.KIMARI_JI],
-              value: poem,
-            })),
-            new inquirer.Separator(),
-            "戻る",
-          ],
-        },
-      ]);
-
-      if (selectedKimariJi === "戻る") {
-        continue;
+      const selectedKimariJi = await this.selectKimariJi(selectedGyo);
+      if (selectedKimariJi !== "戻る") {
+        console.log(this.formatPoemDisplay(selectedKimariJi));
       }
-
-      console.log(this.formatPoemDisplay(selectedKimariJi));
     }
+  }
+
+  async selectGyo() {
+    const { selectedGyo } = await inquirer.prompt([
+      {
+        type: "list",
+        name: "selectedGyo",
+        message: "行を選んでください:",
+        choices: [...GYO_OPTIONS, new inquirer.Separator(), "戻る"],
+      },
+    ]);
+    return selectedGyo;
+  }
+
+  async selectKimariJi(selectedGyo) {
+    const filteredPoems = this.filterPoemsByGyo(selectedGyo);
+    const { selectedPoem } = await inquirer.prompt([
+      {
+        type: "list",
+        name: "selectedPoem",
+        message: `${selectedGyo} の決まり字を選んでください:`,
+        choices: [
+          ...filteredPoems.map((poem) => ({
+            name: poem[PROPERTY_KEYS.KIMARI_JI],
+            value: poem,
+          })),
+          new inquirer.Separator(),
+          "戻る",
+        ],
+      },
+    ]);
+
+    return selectedPoem;
   }
 
   async selectQuizRange() {
