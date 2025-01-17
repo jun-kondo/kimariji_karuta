@@ -47,7 +47,7 @@ export class KarutaQuiz {
 
   async startQuiz(questionCount = 3, choiceCount = 3) {
     const rangeSelection = await this.selectQuizRange();
-    this.setRange(rangeSelection.range);
+    this.currentRange = rangeSelection.range;
     console.log(`\n${rangeSelection.range.name}から出題します。\n`);
     const questions = this.generateQuestions(questionCount, choiceCount);
     await this.conductQuiz(questions);
@@ -82,10 +82,10 @@ export class KarutaQuiz {
 
   async selectKimariJi(selectedGyo) {
     const filteredPoems = this.filterPoemsByGyo(selectedGyo);
-    const { selectedPoem } = await inquirer.prompt([
+    const { selectedKimariJi } = await inquirer.prompt([
       {
         type: "list",
-        name: "selectedPoem",
+        name: "selectedKimariJi",
         message: `${selectedGyo} の決まり字を選んでください:`,
         choices: [
           ...filteredPoems.map((poem) => ({
@@ -98,11 +98,11 @@ export class KarutaQuiz {
       },
     ]);
 
-    return selectedPoem;
+    return selectedKimariJi;
   }
 
   async selectQuizRange() {
-    return await inquirer.prompt([
+    return inquirer.prompt([
       {
         type: "list",
         name: "range",
@@ -200,8 +200,8 @@ export class KarutaQuiz {
     return choicesList;
   }
 
-  async promptForAnswer(choices) {
-    const { selected } = await inquirer.prompt([
+  async selectShimonoKu(choices) {
+    return inquirer.prompt([
       {
         type: "list",
         name: "selected",
@@ -209,7 +209,6 @@ export class KarutaQuiz {
         choices,
       },
     ]);
-    return selected;
   }
 
   async handleAnswerSelection(question) {
@@ -219,7 +218,7 @@ export class KarutaQuiz {
         this.displayHint(question);
       }
       const choices = this.createChoicesList(question, isHintVisible);
-      const answer = await this.promptForAnswer(choices);
+      const answer = await this.selectShimonoKu(choices);
       if (answer === "HINT") {
         isHintVisible = !isHintVisible;
         continue;
