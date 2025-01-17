@@ -1,18 +1,28 @@
 {
-  "name": "karuta",
+  "name": "kimariji_karuta",
   "version": "1.0.0",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
     "fix": "prettier --write . && eslint --fix .",
     "lint": "prettier --check . && eslint ."
   },
-  "keywords": [],
-  "author": "",
+  "bin": {
+    "kimariji_karuta": "src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jun-kondo/kimariji_karuta.git"
+  },
+  "keywords": [
+    "kimariji",
+    "karuta",
+    "hyakunin_issyu"
+  ],
+  "author": "jnknd",
   "license": "ISC",
-  "description": "",
+  "description": "A simple CLI HYAKUNIN_ISSYU karuta game",
   "dependencies": {
     "inquirer": "^12.3.0",
     "readline-sync": "^1.4.10"

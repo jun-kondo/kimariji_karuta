@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import { KarutaQuiz } from "./models/KarutaQuiz.js";
 import { loadKarutaData } from "./utils/fileLoader.js";
 
