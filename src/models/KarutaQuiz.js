@@ -204,7 +204,7 @@ export class KarutaQuiz {
     const { selectedShimonoKu } = await inquirer.prompt([
       {
         type: "list",
-        name: "selected",
+        name: "selectedShimonoKu",
         message: "下の句を選んでください:",
         choices,
       },
