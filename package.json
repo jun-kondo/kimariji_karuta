@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jun-kondo/kimariji_karuta.git"
+    "url": "git+https://github.com/jun-kondo/kimariji_karuta.git"
   },
   "keywords": [
     "kimariji",

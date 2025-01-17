@@ -1,13 +1,14 @@
 import inquirer from "inquirer";
 import { shuffleArray } from "../utils/randomizer.js";
-import { PROPERTY_KEYS, RANGE_OPTIONS } from "../constants/karutaConstants.js";
+import {
+  MENU_OPTIONS,
+  PROPERTY_KEYS,
+  RANGE_OPTIONS,
+  GYO_OPTIONS,
+  KANA_RANGES,
+} from "../constants/karutaConstants.js";
 
 export class KarutaQuiz {
-  static MENU_OPTIONS = {
-    QUIZ: "かるたクイズ",
-    INDEX: "決まり字索引",
-  };
-
   constructor(karutaData) {
     this.karutaData = karutaData;
     this.currentRange = RANGE_OPTIONS.ALL;
@@ -23,8 +24,8 @@ export class KarutaQuiz {
           name: "mainMenuChoice",
           message: "モードを選択してください:",
           choices: [
-            { name: KarutaQuiz.MENU_OPTIONS.QUIZ, value: "quiz" },
-            { name: KarutaQuiz.MENU_OPTIONS.INDEX, value: "index" },
+            { name: MENU_OPTIONS.QUIZ, value: "quiz" },
+            { name: MENU_OPTIONS.INDEX, value: "index" },
             { name: "終了", value: "exit" },
           ],
         },
@@ -53,19 +54,6 @@ export class KarutaQuiz {
   }
 
   async displayIndex() {
-    const GYO_OPTIONS = [
-      "あ行",
-      "か行",
-      "さ行",
-      "た行",
-      "な行",
-      "は行",
-      "ま行",
-      "や行",
-      "ら行",
-      "わ行",
-    ];
-
     while (true) {
       const { selectedGyo } = await inquirer.prompt([
         {
@@ -237,19 +225,7 @@ export class KarutaQuiz {
   }
 
   filterPoemsByGyo(gyo) {
-    const kanaRanges = {
-      あ行: ["あ", "い", "う", "え", "お"],
-      か行: ["か", "き", "く", "け", "こ"],
-      さ行: ["さ", "し", "す", "せ", "そ"],
-      た行: ["た", "ち", "つ", "て", "と"],
-      な行: ["な", "に", "ぬ", "ね", "の"],
-      は行: ["は", "ひ", "ふ", "へ", "ほ"],
-      ま行: ["ま", "み", "む", "め", "も"],
-      や行: ["や", "ゆ", "よ"],
-      ら行: ["ら", "り", "る", "れ", "ろ"],
-      わ行: ["わ", "を"],
-    };
-    const selectedKana = kanaRanges[gyo] || [];
+    const selectedKana = KANA_RANGES[gyo] || [];
 
     return this.karutaData
       .filter((poem) =>
