@@ -72,7 +72,7 @@ export class KarutaQuiz {
           type: "list",
           name: "selectedGyo",
           message: "行を選んでください:",
-          choices: [...GYO_OPTIONS, "戻る"],
+          choices: [...GYO_OPTIONS, new inquirer.Separator(), "戻る"],
         },
       ]);
 
@@ -91,6 +91,7 @@ export class KarutaQuiz {
               name: poem[PROPERTY_KEYS.KIMARI_JI],
               value: poem,
             })),
+            new inquirer.Separator(),
             "戻る",
           ],
         },
@@ -185,17 +186,22 @@ export class KarutaQuiz {
   }
 
   createChoicesList(question, isHintVisible) {
-    return [
+    const choicesList = [
       ...question.choices.map((choice, i) => ({
         name: `${i + 1}) ${choice}`,
         value: choice,
       })),
       new inquirer.Separator(),
-      {
-        name: isHintVisible ? "上の句を隠す" : "上の句を表示する",
-        value: "HINT",
-      },
     ];
+
+    if (!isHintVisible) {
+      choicesList.push({
+        name: "上の句を表示する",
+        value: "HINT",
+      });
+    }
+
+    return choicesList;
   }
 
   async promptForAnswer(choices) {
