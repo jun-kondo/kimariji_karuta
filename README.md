@@ -5,7 +5,7 @@ CLI上で遊べる百人一首かるたアプリです。
 ## インストール
 
 ```
-npm install kimariji_karuta
+npm install -g kimariji_karuta
 ```
 
 ## 遊び方
