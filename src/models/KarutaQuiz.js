@@ -201,7 +201,7 @@ export class KarutaQuiz {
   }
 
   async selectShimonoKu(choices) {
-    return inquirer.prompt([
+    const { selectedShimonoKu } = await inquirer.prompt([
       {
         type: "list",
         name: "selected",
@@ -209,6 +209,7 @@ export class KarutaQuiz {
         choices,
       },
     ]);
+    return selectedShimonoKu;
   }
 
   async handleAnswerSelection(question) {
@@ -225,10 +226,6 @@ export class KarutaQuiz {
       }
       return answer;
     }
-  }
-
-  setRange(range) {
-    this.currentRange = range;
   }
 
   filterPoemsByGyo(gyo) {
