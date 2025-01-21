@@ -5,14 +5,16 @@ export class KarutaQuiz {
   constructor(poemData) {
     this.poemData = poemData;
     this.currentRange = POEM_RANGES.ALL;
+    this.questionCount = 3;
+    this.choiceCount = 3;
   }
 
-  async startQuiz(questionCount = 3, choiceCount = 3) {
-    const rangeSelection = await this.selectPoemsRange();
-    this.currentRange = rangeSelection.range;
+  async startQuiz() {
+    const selectedRange = await this.selectPoemsRange();
+    this.currentRange = selectedRange.range;
 
-    console.log(`\n${rangeSelection.range.name}から出題します。\n`);
-    const questions = this.generateQuestions(questionCount, choiceCount);
+    console.log(`\n${this.currentRange.name}から出題します。\n`);
+    const questions = this.generateQuestions();
     await this.conductQuiz(questions);
   }
 
@@ -39,22 +41,20 @@ export class KarutaQuiz {
     }
   }
 
-  generateQuestions(questionCount, choiceCount) {
-    return this.selectRandomPoems(questionCount).map((poem) =>
-      this.generateQuestion(poem, choiceCount),
-    );
+  generateQuestions() {
+    return this.selectRandomPoems().map((poem) => this.generateQuestion(poem));
   }
 
-  selectRandomPoems(count) {
+  selectRandomPoems() {
     const filteredPoems = this.filterPoemsByNumRange();
-    return this.shufflePoems(filteredPoems).slice(0, count);
+    return this.shufflePoems(filteredPoems).slice(0, this.questionCount);
   }
 
   shufflePoems(poems) {
     return [...poems].sort(() => 0.5 - Math.random());
   }
 
-  generateQuestion(poem, choiceCount = 3) {
+  generateQuestion(poem) {
     const { KIMARI_JI, NUMBER, KAMINO_KU, SHIMONO_KU, POET } =
       POEM_PROPERTY_KEYS;
 
@@ -68,12 +68,12 @@ export class KarutaQuiz {
     return {
       kimariJi: poem[KIMARI_JI],
       correctAnswer: poem[SHIMONO_KU],
-      choices: this.generateChoices(poem, choiceCount),
+      choices: this.generateChoices(poem),
       fullPoem,
     };
   }
 
-  generateChoices(correctPoem, choiceCount = 3) {
+  generateChoices(correctPoem) {
     const { SHIMONO_KU, ID } = POEM_PROPERTY_KEYS;
     const choices = [correctPoem[SHIMONO_KU]];
 
@@ -81,7 +81,7 @@ export class KarutaQuiz {
       (poem) => poem[ID] !== correctPoem[ID],
     );
     const wrongChoices = this.shufflePoems(otherPoems)
-      .slice(0, choiceCount - 1)
+      .slice(0, this.choiceCount - 1)
       .map((poem) => poem[SHIMONO_KU]);
 
     return this.shufflePoems([...choices, ...wrongChoices]);
