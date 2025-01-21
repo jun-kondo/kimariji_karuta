@@ -15,6 +15,11 @@
     "type": "git",
     "url": "git+https://github.com/jun-kondo/kimariji_karuta.git"
   },
+  "files": [
+    "src",
+    "README.md",
+    "package.json"
+  ],
   "keywords": [
     "kimariji",
     "karuta",
