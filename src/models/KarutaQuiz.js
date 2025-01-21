@@ -4,16 +4,18 @@ import { POEM_PROPERTY_KEYS, POEM_RANGES } from "../constants/constants.js";
 export class KarutaQuiz {
   constructor(poemData) {
     this.poemData = poemData;
-    this.currentRange = POEM_RANGES.ALL;
+    this.questionRange = POEM_RANGES.ALL;
     this.questionCount = 3;
     this.choiceCount = 3;
   }
 
   async startQuiz() {
     const selectedRange = await this.selectPoemsRange();
-    this.currentRange = selectedRange.range;
+    this.questionRange = selectedRange.range;
 
-    console.log(`\n${this.currentRange.name}から出題します。\n`);
+    console.log(
+      `\n${this.questionRange.name}の範囲から${this.choiceCount}択問題を${this.questionCount}問出題します。\n`,
+    );
     const questions = this.generateQuestions();
     await this.conductQuiz(questions);
   }
@@ -94,7 +96,7 @@ export class KarutaQuiz {
 
   displayQuestionHeader(index, question) {
     console.log(`\n問題 ${index + 1}:`);
-    console.log(`決まり字: ${question.kimariJi}\n`);
+    console.log(`上の句の決まり字: ${question.kimariJi}\n`);
   }
 
   displayHint(question) {
@@ -114,7 +116,7 @@ export class KarutaQuiz {
 
     if (!isHintVisible) {
       choicesList.push({
-        name: "上の句を表示する",
+        name: "上の句(全文)を表示する",
         value: "HINT",
       });
     }
@@ -153,8 +155,8 @@ export class KarutaQuiz {
   filterPoemsByNumRange() {
     return this.poemData.filter(
       (poem) =>
-        poem[POEM_PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
-        poem[POEM_PROPERTY_KEYS.NUMBER] <= this.currentRange.end,
+        poem[POEM_PROPERTY_KEYS.NUMBER] >= this.questionRange.start &&
+        poem[POEM_PROPERTY_KEYS.NUMBER] <= this.questionRange.end,
     );
   }
 

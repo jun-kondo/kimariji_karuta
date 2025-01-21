@@ -32,8 +32,8 @@ export class KarutaApp {
           break;
         }
         case "index": {
-          const wakaReference = new PoemReference(this.poemData);
-          await wakaReference.displayIndex();
+          const poemReference = new PoemReference(this.poemData);
+          await poemReference.displayIndex();
           break;
         }
         case "exit":
