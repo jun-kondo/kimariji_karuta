@@ -1,113 +1,28 @@
 import inquirer from "inquirer";
-import { shuffleArray } from "../utils/randomizer.js";
-import {
-  MENU_OPTIONS,
-  PROPERTY_KEYS,
-  RANGE_OPTIONS,
-  GYO_OPTIONS,
-  KANA_RANGES,
-} from "../constants/karutaConstants.js";
+import { POEM_PROPERTY_KEYS, POEM_RANGES } from "../constants/constants.js";
 
 export class KarutaQuiz {
-  constructor(karutaData) {
-    this.karutaData = karutaData;
-    this.currentRange = RANGE_OPTIONS.ALL;
-  }
-
-  async start() {
-    console.log("百人一首へようこそ！");
-
-    while (true) {
-      const { mainMenuChoice } = await inquirer.prompt([
-        {
-          type: "list",
-          name: "mainMenuChoice",
-          message: "モードを選択してください:",
-          choices: [
-            { name: MENU_OPTIONS.QUIZ, value: "quiz" },
-            { name: MENU_OPTIONS.INDEX, value: "index" },
-            { name: "終了", value: "exit" },
-          ],
-        },
-      ]);
-
-      switch (mainMenuChoice) {
-        case "quiz":
-          await this.startQuiz();
-          break;
-        case "index":
-          await this.displayIndex();
-          break;
-        case "exit":
-          console.log("さようなら！");
-          return;
-      }
-    }
+  constructor(poemData) {
+    this.poemData = poemData;
+    this.currentRange = POEM_RANGES.ALL;
   }
 
   async startQuiz(questionCount = 3, choiceCount = 3) {
-    const rangeSelection = await this.selectQuizRange();
+    const rangeSelection = await this.selectPoemsRange();
     this.currentRange = rangeSelection.range;
+
     console.log(`\n${rangeSelection.range.name}から出題します。\n`);
     const questions = this.generateQuestions(questionCount, choiceCount);
     await this.conductQuiz(questions);
   }
 
-  async displayIndex() {
-    while (true) {
-      const selectedGyo = await this.selectGyo();
-
-      if (selectedGyo === "戻る") {
-        return;
-      }
-
-      const selectedKimariJi = await this.selectKimariJi(selectedGyo);
-      if (selectedKimariJi !== "戻る") {
-        console.log(this.formatPoemDisplay(selectedKimariJi));
-      }
-    }
-  }
-
-  async selectGyo() {
-    const { selectedGyo } = await inquirer.prompt([
-      {
-        type: "list",
-        name: "selectedGyo",
-        message: "行を選んでください:",
-        choices: [...GYO_OPTIONS, new inquirer.Separator(), "戻る"],
-      },
-    ]);
-    return selectedGyo;
-  }
-
-  async selectKimariJi(selectedGyo) {
-    const filteredPoems = this.filterPoemsByGyo(selectedGyo);
-    const { selectedKimariJi } = await inquirer.prompt([
-      {
-        type: "list",
-        name: "selectedKimariJi",
-        message: `${selectedGyo} の決まり字を選んでください:`,
-        choices: [
-          ...filteredPoems.map((poem) => ({
-            name: poem[PROPERTY_KEYS.KIMARI_JI],
-            value: poem,
-          })),
-          new inquirer.Separator(),
-          "戻る",
-        ],
-      },
-    ]);
-
-    return selectedKimariJi;
-  }
-
-  async selectQuizRange() {
+  async selectPoemsRange() {
     return inquirer.prompt([
       {
         type: "list",
         name: "range",
         message: "出題範囲を選択してください:",
-        choices: Object.values(RANGE_OPTIONS).map((range) => ({
+        choices: Object.values(POEM_RANGES).map((range) => ({
           name: range.name,
           value: range,
         })),
@@ -126,17 +41,22 @@ export class KarutaQuiz {
 
   generateQuestions(questionCount, choiceCount) {
     return this.selectRandomPoems(questionCount).map((poem) =>
-      this.createQuestion(poem, choiceCount),
+      this.generateQuestion(poem, choiceCount),
     );
   }
 
   selectRandomPoems(count) {
-    const filteredData = this.getFilteredKarutaData();
-    return shuffleArray(filteredData).slice(0, count);
+    const filteredPoems = this.filterPoemsByNumRange();
+    return this.shufflePoems(filteredPoems).slice(0, count);
   }
 
-  createQuestion(poem, choiceCount = 3) {
-    const { KIMARI_JI, NUMBER, KAMINO_KU, SHIMONO_KU, POET } = PROPERTY_KEYS;
+  shufflePoems(poems) {
+    return [...poems].sort(() => 0.5 - Math.random());
+  }
+
+  generateQuestion(poem, choiceCount = 3) {
+    const { KIMARI_JI, NUMBER, KAMINO_KU, SHIMONO_KU, POET } =
+      POEM_PROPERTY_KEYS;
 
     const fullPoem = {
       number: poem[NUMBER],
@@ -154,17 +74,17 @@ export class KarutaQuiz {
   }
 
   generateChoices(correctPoem, choiceCount = 3) {
-    const { SHIMONO_KU, ID } = PROPERTY_KEYS;
+    const { SHIMONO_KU, ID } = POEM_PROPERTY_KEYS;
     const choices = [correctPoem[SHIMONO_KU]];
 
-    const otherPoems = this.karutaData.filter(
+    const otherPoems = this.poemData.filter(
       (poem) => poem[ID] !== correctPoem[ID],
     );
-    const wrongChoices = shuffleArray(otherPoems)
+    const wrongChoices = this.shufflePoems(otherPoems)
       .slice(0, choiceCount - 1)
       .map((poem) => poem[SHIMONO_KU]);
 
-    return shuffleArray([...choices, ...wrongChoices]);
+    return this.shufflePoems([...choices, ...wrongChoices]);
   }
 
   async displayChoicesAndGetAnswer(question, index) {
@@ -178,10 +98,12 @@ export class KarutaQuiz {
   }
 
   displayHint(question) {
-    console.log(`\nヒント: ${question.fullPoem[PROPERTY_KEYS.KAMINO_KU]}\n`);
+    console.log(
+      `\nヒント: ${question.fullPoem[POEM_PROPERTY_KEYS.KAMINO_KU]}\n`,
+    );
   }
 
-  createChoicesList(question, isHintVisible) {
+  generateChoicesList(question, isHintVisible) {
     const choicesList = [
       ...question.choices.map((choice, i) => ({
         name: `${i + 1}) ${choice}`,
@@ -218,7 +140,7 @@ export class KarutaQuiz {
       if (isHintVisible) {
         this.displayHint(question);
       }
-      const choices = this.createChoicesList(question, isHintVisible);
+      const choices = this.generateChoicesList(question, isHintVisible);
       const answer = await this.selectShimonoKu(choices);
       if (answer === "HINT") {
         isHintVisible = !isHintVisible;
@@ -228,28 +150,21 @@ export class KarutaQuiz {
     }
   }
 
-  filterPoemsByGyo(gyo) {
-    const selectedKana = KANA_RANGES[gyo] || [];
-
-    return this.karutaData
-      .filter((poem) =>
-        selectedKana.includes(poem[PROPERTY_KEYS.KIMARI_JI]?.[0]),
-      )
-      .sort((a, b) =>
-        a[PROPERTY_KEYS.KIMARI_JI].localeCompare(b[PROPERTY_KEYS.KIMARI_JI]),
-      );
-  }
-
-  getFilteredKarutaData() {
-    return this.karutaData.filter(
+  filterPoemsByNumRange() {
+    return this.poemData.filter(
       (poem) =>
-        poem[PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
-        poem[PROPERTY_KEYS.NUMBER] <= this.currentRange.end,
+        poem[POEM_PROPERTY_KEYS.NUMBER] >= this.currentRange.start &&
+        poem[POEM_PROPERTY_KEYS.NUMBER] <= this.currentRange.end,
     );
   }
 
+  displayQuizResult(isCorrect, question) {
+    console.log(isCorrect ? "\n正解！" : "\n不正解...");
+    console.log(this.formatPoemDisplay(question.fullPoem));
+  }
+
   formatPoemDisplay(poem) {
-    const { NUMBER, KAMINO_KU, SHIMONO_KU, POET } = PROPERTY_KEYS;
+    const { NUMBER, KAMINO_KU, SHIMONO_KU, POET } = POEM_PROPERTY_KEYS;
     return [
       "----------------------------------------",
       "\n【和歌全文】",
@@ -259,10 +174,5 @@ export class KarutaQuiz {
       `作者: ${poem[POET]}\n`,
       "----------------------------------------\n",
     ].join("\n");
-  }
-
-  displayQuizResult(isCorrect, question) {
-    console.log(isCorrect ? "\n正解！" : "\n不正解...");
-    console.log(this.formatPoemDisplay(question.fullPoem));
   }
 }

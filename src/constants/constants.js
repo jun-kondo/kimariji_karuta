@@ -1,7 +1,10 @@
+export const BACK = "戻る";
+
 export const MENU_OPTIONS = {
-  QUIZ: "かるたクイズ",
+  QUIZ: "決まり字かるたクイズ",
   INDEX: "決まり字索引",
 };
+
 export const POEM_PROPERTY_KEYS = {
   KIMARI_JI: "kimariJi",
   KAMINO_KU: "kaminoKu",
@@ -13,10 +16,10 @@ export const POEM_PROPERTY_KEYS = {
 
 export const POEM_RANGES = {
   ALL: { start: 1, end: 100, name: "全100首" },
-  FIRST_QUARTER: { start: 1, end: 25, name: "1-25首" },
-  SECOND_QUARTER: { start: 26, end: 50, name: "26-50首" },
-  THIRD_QUARTER: { start: 51, end: 75, name: "51-75首" },
-  FOURTH_QUARTER: { start: 76, end: 100, name: "76-100首" },
+  FIRST_QUARTER: { start: 1, end: 25, name: "歌番号: 1-25番" },
+  SECOND_QUARTER: { start: 26, end: 50, name: "歌番号: 26-50番" },
+  THIRD_QUARTER: { start: 51, end: 75, name: "歌番号: 51-75番" },
+  FOURTH_QUARTER: { start: 76, end: 100, name: "歌番号: 76-100番" },
 };
 
 export const KANA_ROWS = [
