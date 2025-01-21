@@ -1,9 +1,8 @@
-// カルタに関する定数を管理するファイル
 export const MENU_OPTIONS = {
   QUIZ: "かるたクイズ",
   INDEX: "決まり字索引",
 };
-export const PROPERTY_KEYS = {
+export const POEM_PROPERTY_KEYS = {
   KIMARI_JI: "kimariJi",
   KAMINO_KU: "kaminoKu",
   SHIMONO_KU: "shimonoKu",
@@ -12,7 +11,7 @@ export const PROPERTY_KEYS = {
   ID: "id",
 };
 
-export const RANGE_OPTIONS = {
+export const POEM_RANGES = {
   ALL: { start: 1, end: 100, name: "全100首" },
   FIRST_QUARTER: { start: 1, end: 25, name: "1-25首" },
   SECOND_QUARTER: { start: 26, end: 50, name: "26-50首" },
@@ -20,7 +19,7 @@ export const RANGE_OPTIONS = {
   FOURTH_QUARTER: { start: 76, end: 100, name: "76-100首" },
 };
 
-export const GYO_OPTIONS = [
+export const KANA_ROWS = [
   "あ行",
   "か行",
   "さ行",
@@ -33,7 +32,7 @@ export const GYO_OPTIONS = [
   "わ行",
 ];
 
-export const KANA_RANGES = {
+export const KANA_SYLLABARIES = {
   あ行: ["あ", "い", "う", "え", "お"],
   か行: ["か", "き", "く", "け", "こ"],
   さ行: ["さ", "し", "す", "せ", "そ"],

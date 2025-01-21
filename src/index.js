@@ -1,16 +1,16 @@
 #! /usr/bin/env node
-import { KarutaQuiz } from "./models/KarutaQuiz.js";
-import { loadKarutaData } from "./utils/fileLoader.js";
+import { KarutaApp } from "./models/KarutaApp.js";
+import { loadWakaData } from "./utils/fileLoader.js";
 
 async function main() {
-  const karutaData = await loadKarutaData();
-  const quiz = new KarutaQuiz(karutaData);
+  const wakaData = await loadWakaData();
+  const app = new KarutaApp(wakaData);
 
   // 問題数3問、選択肢4つの場合
-  await quiz.start(3, 4);
+  await app.start(3);
 
   // または、デフォルトの3問、3択の場合
-  // await quiz.start();
+  // await app.start();
 }
 
 main().catch(console.error);
