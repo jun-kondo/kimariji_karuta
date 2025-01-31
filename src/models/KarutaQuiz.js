@@ -9,7 +9,7 @@ export class KarutaQuiz {
     this.choiceCount = 3;
   }
 
-  async startQuiz() {
+  async start() {
     const selectedRange = await this.selectPoemsRange();
     this.questionRange = selectedRange.range;
 

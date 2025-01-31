@@ -28,7 +28,7 @@ export class KarutaApp {
       switch (mainMenuChoice) {
         case "quiz": {
           const karutaQuiz = new KarutaQuiz(this.poemData);
-          await karutaQuiz.startQuiz();
+          await karutaQuiz.start();
           break;
         }
         case "index": {
